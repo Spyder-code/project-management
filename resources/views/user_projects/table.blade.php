@@ -10,8 +10,8 @@
         <tbody>
         @foreach($userProjects as $userProject)
             <tr>
-                       <td>{{ $userProject->project->name }}</td>
-            <td>{{ $userProject->user->name }}</td>
+                       <td>{{ $userProject->namaProjek }}</td>
+                       <td>{{ $userProject->namaUser }}</td>
                        <td class=" text-center">
                            {!! Form::open(['route' => ['userProjects.destroy', $userProject->id], 'method' => 'delete']) !!}
                            <div class='btn-group'>

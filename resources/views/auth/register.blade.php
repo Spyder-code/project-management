@@ -10,10 +10,9 @@
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label for="first_name">Full Name:</label><span
-                                    class="text-danger">*</span>
+                            <label for="first_name">Full Name:</label>
                             <input id="firstName" type="text"
                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                    name="name"
@@ -24,10 +23,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label for="email">Email:</label><span
-                                    class="text-danger">*</span>
+                            <label for="email">Email:</label>
                             <input id="email" type="email"
                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                    placeholder="Enter Email address" name="email" tabindex="1"
@@ -38,11 +36,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="password" class="control-label">Password
-                                :</label><span
-                                    class="text-danger">*</span>
+                                :</label>
                             <input id="password" type="password"
                                    class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}"
                                    placeholder="Set account password" name="password" tabindex="2" required>
@@ -51,11 +48,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="password_confirmation"
-                                   class="control-label">Confirm Password:</label><span
-                                    class="text-danger">*</span>
+                                   class="control-label">Confirm Password:</label>
                             <input id="password_confirmation" type="password" placeholder="Confirm account password"
                                    class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}"
                                    name="password_confirmation" tabindex="2">

@@ -5,6 +5,6 @@
 - buka terminal arahkan ke directori project.
 - composer install.
 - php artisan migrate
-- php artisan db seed
+- php artisan db:seed
 - npm install && npm run dev.
 
