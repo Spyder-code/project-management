@@ -25,13 +25,13 @@ class UpdateServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $project = Project::all();
-        // foreach ($project as $item ) {
-        //     $data = Task::all()->where('project_id',$item->id);
-        //     $sudah = $data->where('status',1)->count();
-        //     if($sudah==$data->count()){
-        //         Project::find($item->id)->update(['status'=>1]);
-        //     };
-        // }
+        $project = Project::all();
+        foreach ($project as $item ) {
+            $data = Task::all()->where('project_id',$item->id);
+            $sudah = $data->where('status',1)->count();
+            if($sudah==$data->count()){
+                Project::find($item->id)->update(['status'=>1]);
+            };
+        }
     }
 }

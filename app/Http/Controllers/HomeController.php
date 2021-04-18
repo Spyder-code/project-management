@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\TimeEntries;
+use App\Models\User;
 use App\Models\UserProject;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +30,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $karyawan = TimeEntries::whereDate('created_at', Carbon::today())->where('user_id',Auth::id())->where('status',0)->first();
+        $karyawanAbsen = TimeEntries::whereDate('created_at', Carbon::today())->where('user_id',Auth::id())->where('status',1)->first();
+        $user = User::where('role','karyawan')->count();
+        $absen = TimeEntries::whereDate('created_at', Carbon::today())->where('status',1)->count();
+        $belum = $user - $absen;
+        $no = $belum/$user*100;
+        $yes = $absen/$user*100;
+        return view('home', compact('karyawan','karyawanAbsen','no','yes'));
     }
 
     public function project()
@@ -58,6 +68,30 @@ class HomeController extends Controller
     public function updateStatus(Request $request)
     {
         Task::find($request->task_id)->update(['status'=>$request->status]);
+        return back();
+    }
+
+    public function postAbsen()
+    {
+            TimeEntries::create([
+                'user_id' => Auth::id(),
+                'time_start' => Carbon::now()->timestamp,
+            ]);
+        return back();
+    }
+
+    public function absenEnd(Request $request)
+    {
+        TimeEntries::find($request->id)->update([
+            'time_end' => Carbon::now()->timestamp,
+            'status' => 1,
+        ]);
+        return back();
+    }
+
+    public function absenDestroy(Request $request)
+    {
+        TimeEntries::destroy($request->id);
         return back();
     }
 }

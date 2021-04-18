@@ -29,6 +29,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('userProjects', App\Http\Controllers\UserProjectController::class);
     Route::resource('projects', App\Http\Controllers\ProjectController::class);
     Route::resource('presence', App\Http\Controllers\PresenceController::class);
+    Route::post('/absenDestroyed', [App\Http\Controllers\HomeController::class, 'absenDestroy'])->name('absen.destroy');
 });
 
 Route::middleware('karyawan')->group(function () {
@@ -36,6 +37,8 @@ Route::middleware('karyawan')->group(function () {
     Route::get('/project/{id}', [App\Http\Controllers\HomeController::class, 'projectDetail'])->name('karyawan.projectDetail');
     Route::get('/task-project', [App\Http\Controllers\HomeController::class, 'projectTask'])->name('karyawan.projectTask');
     Route::post('/updateStatus', [App\Http\Controllers\HomeController::class, 'updateStatus'])->name('updateStatus');
+    Route::post('/postAbsen', [App\Http\Controllers\HomeController::class, 'postAbsen'])->name('absen.post');
+    Route::post('/absenEnd', [App\Http\Controllers\HomeController::class, 'absenEnd'])->name('absen.end');
 });
 
 
