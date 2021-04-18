@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -31,7 +32,12 @@ class UserProjectController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $userProjects = $this->userProjectRepository->all();
+        $userProjects = DB::table('user_projects')
+            ->join('projects', 'projects.id', '=','user_projects.project_id' )
+            ->join('users', 'users.id', '=', 'user_projects.user_id')
+            ->select('projects.name as namaProjek', 'users.name as namaUser', 'user_projects.id')
+
+            ->get();
 
         return view('user_projects.index')
             ->with('userProjects', $userProjects);

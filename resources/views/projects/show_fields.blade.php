@@ -31,7 +31,7 @@
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', 'Status:') !!}
-    <p>{{ $project->status }}</p>
+    <p>{{ $project->status==0?'Belum Selesai':'Selesai' }}</p>
 </div>
 
 <!-- Created At Field -->

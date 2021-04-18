@@ -28,6 +28,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('tasks', App\Http\Controllers\TaskController::class);
     Route::resource('userProjects', App\Http\Controllers\UserProjectController::class);
     Route::resource('projects', App\Http\Controllers\ProjectController::class);
+    Route::resource('presence', App\Http\Controllers\PresenceController::class);
 });
 
 Route::middleware('karyawan')->group(function () {
