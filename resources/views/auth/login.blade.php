@@ -9,7 +9,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                {{-- @if ($errors->any())
+                @if ($errors->any())
                     <div class="alert alert-danger p-0">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -17,7 +17,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif --}}
+                @endif
                 <div class="form-group">
                     {{-- <label for="email">Email</label> --}}
                     <input aria-describedby="emailHelpBlock" id="email" type="email"
@@ -25,9 +25,9 @@
                            placeholder="Enter Email" tabindex="1"
                            value="{{ (Cookie::get('email') !== null) ? Cookie::get('email') : old('email') }}" autofocus
                            required>
-                    <div class="invalid-feedback">
+                    {{-- <div class="invalid-feedback">
                         {{ $errors->first('email') }}
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="form-group">
@@ -36,9 +36,9 @@
                            placeholder="Enter Password"
                            class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}" name="password"
                            tabindex="2" required>
-                    <div class="invalid-feedback">
+                    {{-- <div class="invalid-feedback">
                         {{ $errors->first('password') }}
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="form-group">

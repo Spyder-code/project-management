@@ -10,21 +10,19 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($time_entries as $time_entri)
+        @foreach($time_entries as $item)
             <tr>
-            <td>{{ $time_entri->id }}</td>
-            <td>{{ $time_entri->namaUser }}</td>
-            <td>{{ $time_entri->time_start }}</td>
-            <td>{{ $time_entri->time_end }}</td>
-                       {{-- <td class=" text-center">
-                           {!! Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'delete']) !!}
-                           <div class='btn-group'>
-                               <a href="{!! route('projects.show', [$project->id]) !!}" class='btn btn-light action-btn '><i class="fa fa-eye"></i></a>
-                               <a href="{!! route('projects.edit', [$project->id]) !!}" class='btn btn-warning action-btn edit-btn'><i class="fa fa-edit"></i></a>
-                               {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger action-btn delete-btn', 'onclick' => 'return confirm("Are you sure want to delete this record ?")']) !!}
-                           </div>
-                           {!! Form::close() !!}
-                       </td> --}}
+            <td>{{ $item->id }}</td>
+            <td>{{ $item->namaUser }}</td>
+            <td>{{ $item->time_start }}</td>
+            <td>{{ $item->time_end }}</td>
+                       <td class=" text-center">
+                           <form action="{{ route('absen.destroy') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                       </td>
                    </tr>
         @endforeach
         </tbody>

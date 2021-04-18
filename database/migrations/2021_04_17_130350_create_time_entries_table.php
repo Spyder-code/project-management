@@ -18,6 +18,7 @@ class CreateTimeEntriesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->datetime('time_start');
             $table->datetime('time_end')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

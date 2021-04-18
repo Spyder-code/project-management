@@ -19,7 +19,8 @@ class TimeEntries extends Model
     public $fillable = [
         'user_id',
         'time_start',
-        'time_end'
+        'time_end',
+        'status'
     ];
 
     /**
@@ -43,7 +44,7 @@ class TimeEntries extends Model
     public static $rules = [
         'user_id' => 'required'
     ];
- 
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
