@@ -36,3 +36,7 @@ Route::middleware('karyawan')->group(function () {
     Route::get('/task-project', [App\Http\Controllers\HomeController::class, 'projectTask'])->name('karyawan.projectTask');
     Route::post('/updateStatus', [App\Http\Controllers\HomeController::class, 'updateStatus'])->name('updateStatus');
 });
+
+
+
+
