@@ -2,23 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Models\UserProject;
+use App\Models\User;
 use App\Repositories\BaseRepository;
 
 /**
- * Class UserProjectRepository
+ * Class UserRepository
  * @package App\Repositories
- * @version April 20, 2021, 5:39 am WIB
+ * @version April 20, 2021, 6:00 am WIB
 */
 
-class UserProjectRepository extends BaseRepository
+class UserRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'user_id',
-        'project_id'
+        'name',
+        'email',
+        'password',
+        'role'
     ];
 
     /**
@@ -36,6 +38,6 @@ class UserProjectRepository extends BaseRepository
      **/
     public function model()
     {
-        return UserProject::class;
+        return User::class;
     }
 }

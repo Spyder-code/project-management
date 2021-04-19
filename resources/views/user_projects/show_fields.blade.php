@@ -1,13 +1,13 @@
-<!-- Task Id Field -->
-<div class="form-group">
-    {!! Form::label('task_id', 'Task Id:') !!}
-    <p>{{ $userProject->project->name }}</p>
-</div>
-
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
+    {!! Form::label('user', 'User Id:') !!}
     <p>{{ $userProject->user->name }}</p>
+</div>
+
+<!-- Project Id Field -->
+<div class="form-group">
+    {!! Form::label('project', 'Project Id:') !!}
+    <p>{{ $userProject->project->name }}</p>
 </div>
 
 <!-- Created At Field -->

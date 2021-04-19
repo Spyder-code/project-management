@@ -16,11 +16,11 @@ class CreateUserProjectsTable extends Migration
     {
         Schema::create('user_projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->foreignId('user_id')->constrained('users');
             $table->integer('project_id')->unsigned();
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

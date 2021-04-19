@@ -9,7 +9,6 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -32,12 +31,7 @@ class UserProjectController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $userProjects = DB::table('user_projects')
-            ->join('projects', 'projects.id', '=','user_projects.project_id' )
-            ->join('users', 'users.id', '=', 'user_projects.user_id')
-            ->select('projects.name as namaProjek', 'users.name as namaUser', 'user_projects.id')
-
-            ->get();
+        $userProjects = $this->userProjectRepository->all();
 
         return view('user_projects.index')
             ->with('userProjects', $userProjects);
@@ -50,9 +44,9 @@ class UserProjectController extends AppBaseController
      */
     public function create()
     {
-        $itemUser = User::pluck('name','id');
         $itemProject = Project::pluck('name','id');
-        return view('user_projects.create', compact('itemUser','itemProject'));
+        $itemUser = User::pluck('name','id');
+        return view('user_projects.create', compact('itemProject','itemUser'));
     }
 
     /**
@@ -103,16 +97,15 @@ class UserProjectController extends AppBaseController
     public function edit($id)
     {
         $userProject = $this->userProjectRepository->find($id);
-
+        $itemProject = Project::pluck('name','id');
+        $itemUser = User::pluck('name','id');
         if (empty($userProject)) {
             Flash::error('User Project not found');
 
             return redirect(route('userProjects.index'));
         }
 
-        $itemUser = User::pluck('name','id');
-        $itemProject = Project::pluck('name','id');
-        return view('user_projects.edit', compact('userProject','itemUser','itemProject'));
+        return view('user_projects.edit', compact('userProject','itemProject','itemUser'));
     }
 
     /**

@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class UserProject
  * @package App\Models
- * @version April 8, 2021, 3:55 am UTC
+ * @version April 20, 2021, 5:39 am WIB
  *
- * @property integer $project_id
- * @property integer $user_id
+ * @property foreignId $user_id
+ * @property foreignId $project_id
  */
 class UserProject extends Model
 {
@@ -28,8 +28,8 @@ class UserProject extends Model
 
 
     public $fillable = [
-        'project_id',
-        'user_id'
+        'user_id',
+        'project_id'
     ];
 
     /**
@@ -38,9 +38,7 @@ class UserProject extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'project_id' => 'integer',
-        'user_id' => 'integer'
+        'id' => 'integer'
     ];
 
     /**
@@ -49,17 +47,16 @@ class UserProject extends Model
      * @var array
      */
     public static $rules = [
-        'project_id' => 'required',
-        'user_id' => 'required'
+
     ];
 
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id');
+        return $this->belongsTo(Project::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

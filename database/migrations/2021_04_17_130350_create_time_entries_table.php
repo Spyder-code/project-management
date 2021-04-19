@@ -15,7 +15,7 @@ class CreateTimeEntriesTable extends Migration
     {
         Schema::create('time_entries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->datetime('time_start');
             $table->datetime('time_end')->nullable();
             $table->integer('status')->default(0);

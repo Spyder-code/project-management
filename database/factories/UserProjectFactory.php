@@ -22,10 +22,10 @@ class UserProjectFactory extends Factory
     public function definition()
     {
         return [
-            'project_id' => $this->faker->randomDigitNotNull,
-            'user_id' => $this->faker->randomDigitNotNull,
-            'created_at' => $this->faker->date('Y-m-d H:i:s'),
-            'updated_at' => $this->faker->date('Y-m-d H:i:s')
+            'user_id' => $this->faker->word,
+        'project_id' => $this->faker->word,
+        'created_at' => $this->faker->date('Y-m-d H:i:s'),
+        'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }

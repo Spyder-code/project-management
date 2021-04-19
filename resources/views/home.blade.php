@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (Auth::user()->role=='admin')
+                            @if (Auth::user()->role!='karyawan')
                                 <div id="testnilai" class="col-lg-12"></div>
                             @else
                             <div class="col-lg-12">

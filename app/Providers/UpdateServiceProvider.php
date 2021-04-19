@@ -28,10 +28,17 @@ class UpdateServiceProvider extends ServiceProvider
         $project = Project::all();
         foreach ($project as $item ) {
             $data = Task::all()->where('project_id',$item->id);
-            $sudah = $data->where('status',1)->count();
-            if($sudah==$data->count()){
-                Project::find($item->id)->update(['status'=>1]);
-            };
+            if ($data->count()!=0) {
+                $a = 0;
+                foreach ($data as $task ) {
+                    if ($task->status==1) {
+                        $a = $a + 1;
+                    }
+                }
+                if($a==$data->count()){
+                    Project::find($item->id)->update(['status'=>1]);
+                };
+            }
         }
     }
 }

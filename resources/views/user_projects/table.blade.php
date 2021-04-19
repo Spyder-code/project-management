@@ -2,16 +2,16 @@
     <table class="table" id="userProjects-table">
         <thead>
             <tr>
-                <th>Project</th>
-        <th>User Name</th>
+                <th>User Id</th>
+        <th>Project Id</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($userProjects as $userProject)
             <tr>
-                       <td>{{ $userProject->namaProjek }}</td>
-                       <td>{{ $userProject->namaUser }}</td>
+                       <td>{{ $userProject->user->name }}</td>
+            <td>{{ $userProject->project->name }}</td>
                        <td class=" text-center">
                            {!! Form::open(['route' => ['userProjects.destroy', $userProject->id], 'method' => 'delete']) !!}
                            <div class='btn-group'>
