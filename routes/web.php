@@ -26,10 +26,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('admin')->group(function () {
     Route::resource('tasks', App\Http\Controllers\TaskController::class);
-    Route::resource('users', App\Http\Controllers\UserController::class);
     Route::resource('projects', App\Http\Controllers\ProjectController::class);
+    Route::resource('userProjects', App\Http\Controllers\UserProjectController::class);
+    Route::resource('users', App\Http\Controllers\UserController::class);
     Route::resource('presence', App\Http\Controllers\PresenceController::class);
     Route::post('/absenDestroyed', [App\Http\Controllers\HomeController::class, 'absenDestroy'])->name('absen.destroy');
+});
+
+Route::middleware('hrd')->group(function () {
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::resource('presence', App\Http\Controllers\PresenceController::class);
+    Route::post('/absenDestroyed', [App\Http\Controllers\HomeController::class, 'absenDestroy'])->name('absen.destroy');
+});
+
+Route::middleware('manager')->group(function () {
+    Route::resource('tasks', App\Http\Controllers\TaskController::class);
+    Route::resource('projects', App\Http\Controllers\ProjectController::class);
+    Route::resource('userProjects', App\Http\Controllers\UserProjectController::class);
 });
 
 Route::middleware('karyawan')->group(function () {
@@ -41,9 +54,3 @@ Route::middleware('karyawan')->group(function () {
     Route::post('/absenEnd', [App\Http\Controllers\HomeController::class, 'absenEnd'])->name('absen.end');
 });
 
-
-
-
-
-
-Route::resource('userProjects', App\Http\Controllers\UserProjectController::class);
