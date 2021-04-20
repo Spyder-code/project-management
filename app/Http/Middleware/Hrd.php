@@ -17,7 +17,7 @@ class Hrd
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()&&Auth::user()->role=='hrd' ) {
+        if (Auth::check()&&Auth::user()->role=='hrd'||Auth::user()->role=='admin'||Auth::user()->role=='ceo' ) {
             return $next($request);
         } else {
             return back();

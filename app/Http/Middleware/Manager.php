@@ -17,7 +17,7 @@ class Manager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()&&Auth::user()->role=='manager' ) {
+        if (Auth::check()&&Auth::user()->role=='project manager'||Auth::user()->role=='admin'||Auth::user()->role=='ceo' ) {
             return $next($request);
         } else {
             return back();
